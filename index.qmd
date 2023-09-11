@@ -1,0 +1,25 @@
+---
+title: "tutorial_quarto_website"
+bibliography: references.bib
+---
+
+In this project we aim to visualize the trends of the most frequently used babynames from 1880 to 2017 in the United States. We do this by:
+
+-   Understanding the **different columns** of the data set
+
+-   Find the top 10 most frequently used baby names in the data for:
+
+    -   girls
+    -   boys
+
+-   Plot the yearly trend of the top 10 baby names
+
+This is a picture of a baby
+
+[@Davison2005]
+
+![image_baby](https://live.staticflickr.com/4062/4705268899_49f78f7bd1_b.jpg){width="400" fig-align="right"}
+
+![sib logo](SIB_LogoQ_GBv.svg){width="600" fig-align="center"}
+
+
