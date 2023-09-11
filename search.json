@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "Loading packages\n\nlibrary(babynames)\nlibrary(knitr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(tidyr)\nlibrary(pheatmap)\n\n\n\nReading 10 first line of dataset\n\nhead(babynames) |&gt; kable()\n\n\n\n\nyear\nsex\nname\nn\nprop\n\n\n\n\n1880\nF\nMary\n7065\n0.0723836\n\n\n1880\nF\nAnna\n2604\n0.0266790\n\n\n1880\nF\nEmma\n2003\n0.0205215\n\n\n1880\nF\nElizabeth\n1939\n0.0198658\n\n\n1880\nF\nMinnie\n1746\n0.0178884\n\n\n1880\nF\nMargaret\n1578\n0.0161672\n\n\n\n\n\n\n\nCode\nget_most_frequent &lt;- function(babynames, select_sex, from = 1950) {\n  most_freq &lt;- babynames |&gt;\n    filter(sex == select_sex, year &gt; from) |&gt;\n    group_by(name) |&gt;\n    summarise(average = mean(prop)) |&gt;\n    arrange(desc(average))\n    \n  return(list(\n    babynames = babynames,\n    most_frequent = most_freq,\n    sex = select_sex,\n    from = from))\n}\n\nplot_top &lt;- function(x, top = 10) {\n  topx &lt;- x$most_frequent$name[1:top]\n  \n  p &lt;- x$babynames |&gt;\n    filter(name %in% topx, sex == x$sex, year &gt; x$from) |&gt;\n    ggplot(aes(x = year, y = prop, color = name)) +\n    geom_line() +\n    scale_color_brewer(palette = \"Paired\") +\n    theme_classic()\n  \n  return(p)\n}\n\n\n\n\nPopularity of female baby names from 1950 to 2020\n\nget_most_frequent(babynames, select_sex = \"F\") |&gt;\n  plot_top()\n\n\n\n\nFigure 1: Line plot displaying proportion of top 10 girl names by year\n\n\n\n\nFigure 1 shows that some female names had picks of popularity\n\n\nPopularity of female baby names from 1950 to 2020\n\nget_most_frequent(babynames, select_sex = \"M\") |&gt;\n  plot_top()\n\n\n\n\nFigure 2: Line plot displaying proportion of top 10 boy names by year\n\n\n\n\nFigure 2 shows that names that were popular before 1990 are relatively infrequent after 2000."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "tutorial_quarto_website",
+    "section": "",
+    "text": "In this project we aim to visualize the trends of the most frequently used babynames from 1880 to 2017 in the United States. We do this by:\n\nUnderstanding the different columns of the data set\nFind the top 10 most frequently used baby names in the data for:\n\ngirls\nboys\n\nPlot the yearly trend of the top 10 baby names\n\nThis is a picture of a baby\n(Davison and Nair 2005)\n\n\n\nimage_baby\n\n\n\n\n\nsib logo\n\n\n\n\n\n\nReferences\n\nDavison, Fred, and Venugopal Nair. 2005. “Use of Marek’s Disease Vaccines: Could They Be Driving the Virus to Increasing Virulence?” Expert Review of Vaccines 4 (1): 77–88. https://doi.org/10.1586/14760584.4.1.77."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  }
+]
